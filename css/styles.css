@@ -1,0 +1,318 @@
+:root{
+  --green: #b4ff44;
+  --blue: #11f0f8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background: #189328;
+  background: -webkit-linear-gradient(to right, #189328, #d2f322);
+  background: linear-gradient(to right, #189328, #d2f322);
+  background: -moz-radial-gradient(circle, #189328 0%, #d2f322 100%);
+  background: -webkit-radial-gradient(circle, #189328 0%, #d2f322 100%);
+  background: radial-gradient(circle, #189328 0%, #d2f322 100%);
+  /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#842832",endColorstr="#d2f322",GradientType=1); */
+  font-family: 'Roboto', sans-serif;
+}
+
+.headerContainer{
+  background-image: url("../imgs/asteroids.jpg");
+}
+
+.logoHeader {
+  width: 70%;
+  margin: 0 auto;
+}
+
+nav{
+  background-color: #77ee66;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.listMenu{
+  width: 60%;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.itemMenu{
+  display: inline-block;  
+  list-style: none;
+}
+
+.linkMenu{
+  text-decoration: none;
+  font-size: 2em;
+  color: #e6e6e6
+}
+
+svg
+path{
+  fill: #7eef66;
+}
+
+.searchBar{
+  background-color: #202020;
+  height: 3em;
+  text-align: center;
+}
+
+.searchLabel {
+  color: var(--blue);
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.searchBar{
+  display: flex;
+   justify-content: center;
+   align-items:center;
+}
+
+.searchContainer{
+  width: 100%;
+}
+
+.searchText{
+  width: 35%;
+  font-size: 1.4em;
+  background-color: #2F2F2F;
+  outline: none;
+  border: none;
+  color: var(--blue);
+  padding: 6px;
+  text-align: center;
+}
+
+.searchText::placeholder{
+  color: var(--blue);
+}
+.closeInput{
+  font-size: 1.4em;
+  cursor:pointer;
+}
+
+.bodyContainer{
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+  margin: 60px auto 0 auto;
+  /* margin-top: 60px; */
+}
+
+.card{
+  height: 450px;
+  width: 300px;
+  background-color: #202020;
+  /* background-color: rgba(0,0,0,0.7); */
+  /* background-image: url("../imgs/portal.png"); */
+  background-position-y: -50px;
+  border: 4px solid #FFF;
+  cursor: pointer;
+  margin-bottom: 70px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.card:hover{
+  box-shadow: 0 20px 10px #303030;
+  transform: translateY(-15px);
+}
+
+.imgCard {
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: 300px 300px;
+  transition: all 0.3s ease-in-out;
+}
+
+.imgCard:hover{
+  scale: 1.1;
+}
+
+/* .imgCard::after {
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: calc(100% - 40px);
+  width: 100%;
+  height: 140px;
+  background: rgba(0,0,0,0.7);
+  background-image: url("../imgs/portal.png"); */
+/* } */
+
+.nameContainer{
+  height:150px;
+  background-position: center;
+}
+
+.cardName{
+  height: 150px;
+  padding-top: 20px;
+ text-align: center;
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.nameChar{
+  display: inline-block;
+  width: 100%; 
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #ffffff;
+
+}
+
+.details{
+  font-size: 1.2em;
+  text-decoration: none;
+  color: #11f0f8;
+  align-self: flex-end;
+  margin: 0 auto 12px;
+}
+
+.newElements{
+  height: 150px;
+  margin-bottom: 20px;
+  background-image: url("../imgs/Wedge.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modalShow{
+  overflow: hidden;
+}
+
+.hide{
+  transform: translateY(-200%);
+  background-color: #000;
+  /* opacity: 0; */
+}
+
+
+.hiding{
+  display: none;
+}
+.modalLayer{
+  position: fixed;
+  top:0;
+  left:0;
+  min-width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0,0,0,0.2);
+  /* opacity: 1; */
+  transition: all 0.3s ease-in-out;
+}
+
+.modalCharacter{
+  width: 45%;
+  margin: 2em 27%;
+  background-color: #202020;
+  text-align: center;
+  color: #FFF;
+}
+
+.nameContainer{
+  text-align: center;
+  height: 230px;
+  margin-bottom:20px;
+}
+
+.characterName{
+  font-size: 2rem;
+  padding: 20px;
+}
+
+.modalCharImg{
+  width: 150px;
+  border-radius: 50%;
+}
+
+.generalData{
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.charData{
+  padding: 4px;
+  width:76%;
+}
+
+.generalData .liContainer:nth-child(1) .status{
+  width: 40%;
+}
+.alive{
+  background-color: #b4ff44;
+  color: #2e5a19;
+}
+
+.dead{
+  background-color: rgb(255, 42, 42);
+}
+
+.unknown{
+  background-color: rgb(253, 234, 57);
+  color: #000;
+}
+
+.liContainer{
+  width:90%;
+  margin: 10px auto 0;
+}
+
+.generalData li{
+  list-style: none;
+  display: inline-block;
+}
+
+.left{
+  text-align: left;
+  /* font-weight: bold; */
+  color: #11f0f8;
+  width:22%;
+}
+
+
+.footerContainer {
+  margin-top:20px;
+}
+
+.closeContainer {
+  background-image: url('../imgs/portal.png');
+  display: inline-block;
+  height: 100px;
+  width: 18rem;
+  background-size: 28% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* transform: rotate(360deg); */
+  animation: rotation 1.2s linear infinite;
+}
+
+.closeBtn{
+  font-size: 1.8rem;
+    color: #000;
+    padding-top: 30px;
+    display: inline-block;
+    position: absolute;
+    left: calc(50% - 1.9rem);
+}
+
+@keyframes rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}

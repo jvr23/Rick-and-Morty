@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Rick and Morty!</title>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<header>
+		<div class="headerContainer">
+			<figure class="logoHeader">
+				<img src="imgs/Rick_and_Morty34.svg" alt="Rick and Morty Logo">
+			</figure>
+		</div>
+	</header>
+	<div class="searchBar">
+		<div class="searchContainer">
+			<span class="searchLabel">🛸Search by name🛸</span>
+			<input type="text" class="searchText hiding" placeholder="CHARACTER NAME HERE">
+			<span class="closeInput hiding">❌</span>
+		</div>
+	</div>
+	<div class="bodyContainer">
+	</div>
+	<div class="modalLayer hide">
+		<div class="modalCharacter">
+			<div class="modalContainer">
+				<div class="nameContainer">
+					<h3 class="characterName"></h3>
+					<div class="imgCharacter">
+						<img src="imgs/rick.jpeg" alt="Rick Sanchez" class="modalCharImg">
+					</div>
+				</div>
+				<div class="dataContainer">
+					<ul class="generalData">
+						<div class="liContainer">
+							<li class="left">Status:</li>
+							<li class="charData"><span class="status"></span></li>
+						</div>
+						<div class="liContainer">
+							<li class="left">Species: </li>
+							<li class="charData species"></li>
+						</div>
+						<div class="liContainer">
+							<li class="left">Gender: </li>
+							<li class="charData gender"></li>
+						</div>
+						<div class="liContainer">
+							<li class="left">Origin: </li>
+							<li class="charData origin"></li>
+						</div>
+						<div class="liContainer">
+							<li class="left">Location: </li>
+							<li class="charData location"></li>
+						</div>
+					</ul>
+					<!-- <div class="episodesList">
+						<h4 class="episodesTitle">Aparece en:</h4>
+					</div> -->
+				</div>
+				<div class="footerContainer">
+					<div class="closeContainer">
+					</div>
+					<a href="#" class="closeBtn">OK!</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/js.js"></script>
+</body>
+
+</html>
