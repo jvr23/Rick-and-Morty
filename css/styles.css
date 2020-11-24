@@ -98,6 +98,8 @@ path{
 .closeInput{
   font-size: 1.4em;
   cursor:pointer;
+  position: relative;
+  right: 45px;
 }
 
 .bodyContainer{

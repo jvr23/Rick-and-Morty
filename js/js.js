@@ -84,6 +84,27 @@ function createCards(myJson){
   state.lastUrl = myJson.info.next;
 }
 
+function createLoader(){
+  const html = '<div class="newElements"></div>';
+  const container = document.querySelector('.bodyContainer');
+  container.insertAdjacentHTML('afterend', html);
+
+  const loadMore = (entries) => {
+    console.log(entries);
+    if(entries[0].isIntersecting){
+      // state.searching = false;
+      apiCall(state);
+    }
+  }
+  const options = {
+    rootMargin:'200px',
+    threshold: 0.1
+  };
+  const obs = new IntersectionObserver(loadMore, options);
+  obs.observe(document.querySelector('.newElements'));
+  state.isFirstTime = false;
+}
+
 function removeLoader(){
   if(document.querySelector('.newElements')){
   let loader = document.querySelector('.newElements');
@@ -103,11 +124,42 @@ function notFound(){
 
 }
 
+function debounce(func, time){
+  let wait;
+  return function(...args){
+    const context = this;
+    clearTimeout(wait);
+    console.log(wait);
+    wait = setTimeout(() => func.apply(context, args), time);
+    console.log(wait);
+
+  } 
+}
+
+let searchFromInput = debounce(function(){
+  console.log('entre');
+  state.searchFor = 'input';
+  state.searching = true;
+  state.lastUrl = '';
+  state.charName = document.querySelector('.searchText').value;
+  apiCall(state);
+}, 1200);
+
+let clearSeach = debounce(()=>{
+  state.searching=false;
+  state.searchFor = '';
+  state.lastUrl = '';
+  state.charName ='';
+  state.isFirstTime = true;
+  document.querySelector('.bodyContainer').textContent = '';
+  removeLoader();
+  apiCall(state);
+}, 800);
+
+
 function apiCall(data){
   console.log(data);
 let endpoint = 'https://rickandmortyapi.com/api/character/';
-      // (data.searching || data.isFirstTime) ?
-      // `https://rickandmortyapi.com/api/character/${data.searching ? data.id : ''}` : `${data.lastUrl}`;
 
     if(data.searching || data.isFirstTime){
      endpoint += (data.searching) ? data.searchFor === 'modal' ? data.id : `?name=${data.charName}` : '';
@@ -137,29 +189,6 @@ let endpoint = 'https://rickandmortyapi.com/api/character/';
   .catch(handleError);
 }
 
-function createLoader(){
-  const html = '<div class="newElements"></div>';
-  const container = document.querySelector('.bodyContainer');
-  container.insertAdjacentHTML('afterend', html);
-
-  const loadMore = (entries) => {
-    console.log(entries);
-    if(entries[0].isIntersecting){
-      state.searching = false;
-      apiCall(state);
-    }
-  }
-  const options = {
-    // root:,
-    rootMargin:'200px',
-    threshold: 0.1
-  };
-  const obs = new IntersectionObserver(loadMore, options);
-  obs.observe(document.querySelector('.newElements'));
-  state.isFirstTime = false;
-}
-
-
 
 links.forEach(link => link.addEventListener('click', function(e){
   e.preventDefault();
@@ -168,22 +197,24 @@ links.forEach(link => link.addEventListener('click', function(e){
   appiCall(state);
   }));
 
-  
-
 document.addEventListener('DOMContentLoaded', () => {
   apiCall(state);
 });
 
 document.querySelector('.closeBtn').addEventListener('click', (e)=>{
   e.preventDefault();
+  state.searching = false;
+  state.searchFor = null;
   document.querySelector('.modalLayer').classList.add('hide')
   document.querySelector('body').classList.remove('modalShow');
+
 });
 
 document.querySelector('.searchLabel').addEventListener('click', function(e){
   e.currentTarget.classList.add('hiding');
   document.querySelector('.searchText').classList.remove('hiding');
   document.querySelector('.closeInput').classList.remove('hiding');
+  document.querySelector('.searchText').focus();
 });
 
 document.querySelector('.closeInput').addEventListener('click', function(e){
@@ -192,40 +223,27 @@ document.querySelector('.closeInput').addEventListener('click', function(e){
   document.querySelector('.searchLabel').classList.remove('hiding');
 });
 
-function debounce(func, time){
-  let wait;
-  return function(...args){
-    const context = this;
-    clearTimeout(wait);
-    console.log(wait);
-    wait = setTimeout(() => func.apply(context, args), time);
-    console.log(wait);
-
-  } 
-}
-
-let searchFromInput = debounce(function(){
-  console.log('entre');
-  state.searchFor = 'input';
-  state.searching = true;
-  state.lastUrl = '';
-  state.charName = document.querySelector('.searchText').value;
-  apiCall(state);
-}, 1200);
-
 document.querySelector('.searchText').addEventListener('keyup', (e)=>{
   console.log(document.querySelector('.searchText').value.length);
   if(document.querySelector('.searchText').value.length >= 3){
     searchFromInput();
-  }else if(document.querySelector('.searchText').value.length == 0 && e.key === 'Backspace' || e.key === 'Delete'){
+  }else if(document.querySelector('.searchText').value.length == 0 || document.querySelector('.searchText').value.length < 3 && e.key === 'Backspace' || e.key === 'Delete'){
     console.log('empty input');
-    state.searching=false;
-    state.searchFor = '';
-    state.lastUrl = '';
-    state.charName ='';
-    state.isFirstTime = true;
-    document.querySelector('.bodyContainer').textContent = '';
-    removeLoader();
-    apiCall(state);
+    clearSeach();
   }
+});
+
+document.querySelector('.closeInput').addEventListener('click', (e)=>{
+  if(document.querySelector('.searchText').value.length < 3 ){
+    console.log('input vacio');
+    document .querySelector('.searchText').value = '';
+    return;
+  }else{
+    clearSeach();
+    // document.querySelector('.searchText').classList.add('hiding');
+    // e.currentTarget.classList.add('hiding');
+    // document.querySelector('.searchLabel').classList.remove('hiding');
+    document .querySelector('.searchText').value = '';
+  }
+  console.log(e.currentTarget);
 });
