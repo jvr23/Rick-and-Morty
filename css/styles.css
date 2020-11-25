@@ -99,7 +99,7 @@ path{
   font-size: 1.4em;
   cursor:pointer;
   position: relative;
-  right: 45px;
+  right: 35px;
 }
 
 .bodyContainer{
@@ -185,7 +185,7 @@ path{
 .newElements{
   height: 150px;
   margin-bottom: 20px;
-  background-image: url("../imgs/Wedge.gif");
+  /* background-image: url("../imgs/Wedge.gif"); */
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -204,6 +204,7 @@ path{
 .hiding{
   display: none;
 }
+
 .modalLayer{
   position: fixed;
   top:0;
@@ -225,13 +226,13 @@ path{
 
 .nameContainer{
   text-align: center;
-  height: 230px;
-  margin-bottom:20px;
+  height: 270px;
+  /* margin-bottom:20px; */
 }
 
 .characterName{
   font-size: 2rem;
-  padding: 20px;
+  padding: 10px;
 }
 
 .modalCharImg{
@@ -242,7 +243,7 @@ path{
 .generalData{
   width: 50%;
   margin: 0 auto;
-  margin-top: 25px;
+  /* margin-top: 25px; */
 }
 
 .charData{
@@ -298,7 +299,7 @@ path{
   background-repeat: no-repeat;
   background-position: center;
   /* transform: rotate(360deg); */
-  animation: rotation 1.2s linear infinite;
+  animation: rotation 1.5s linear infinite;
 }
 
 .closeBtn{
@@ -310,11 +311,72 @@ path{
     left: calc(50% - 1.9rem);
 }
 
+.portalLoader{
+  position: fixed;
+  left: calc(50% - 104px);
+  bottom: calc(50% - 104px);
+}
+
+.loaderLayer{
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+ 
+.invisible{
+  opacity:0;
+  display: none;
+}
+
+
 @keyframes rotation {
   from {
       transform: rotate(0deg);
   }
   to {
       transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1025px){
+  .searchText{
+    width:90%;
+    font-size: 1.1em;
+    margin-right: -1.1em;
+  }
+  
+  .closeInput {
+    font-size: 1.1em;
+    right: 20px;  
+  }
+
+  .modalCharacter{
+    width: 90%;
+    margin: 1em 5%;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .logoHeader{
+    width: 100%;
+  }
+
+  .modalCharacter {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .generalData {
+    width: 90%;
+  }
+
+  .left,
+  .liContainer{
+    width: 100%;
+    text-align: center;
+  }
+
+  .closeBtn {
+    left: calc(50% - 1.5rem);
   }
 }

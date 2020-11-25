@@ -29,7 +29,8 @@ function updateModal(myJson){
   document.querySelector('.gender').textContent = myJson.gender;
   document.querySelector('.origin').textContent = myJson.origin.name;
   document.querySelector('.location').textContent = myJson.location.name;
-  showModal();  
+  showModal();
+  document.querySelector('.loaderLayer').classList.add('invisible');
 }
 
 function createCards(myJson){
@@ -82,6 +83,8 @@ function createCards(myJson){
     }
   });
   state.lastUrl = myJson.info.next;
+  state.searching = false;
+  document.querySelector('.loaderLayer').classList.add('invisible');
 }
 
 function createLoader(){
@@ -159,7 +162,8 @@ let clearSeach = debounce(()=>{
 
 function apiCall(data){
   console.log(data);
-let endpoint = 'https://rickandmortyapi.com/api/character/';
+  document.querySelector('.loaderLayer').classList.remove('invisible');
+  let endpoint = 'https://rickandmortyapi.com/api/character/';
 
     if(data.searching || data.isFirstTime){
      endpoint += (data.searching) ? data.searchFor === 'modal' ? data.id : `?name=${data.charName}` : '';
@@ -167,6 +171,7 @@ let endpoint = 'https://rickandmortyapi.com/api/character/';
       if(data.lastUrl === null){
         removeLoader();
         alert('That\'s all');
+        document.querySelector('.loaderLayer').classList.add('invisible');
         return;
       }
       endpoint = data.lastUrl;
@@ -247,3 +252,16 @@ document.querySelector('.closeInput').addEventListener('click', (e)=>{
   }
   console.log(e.currentTarget);
 });
+
+
+// var width = window.innerWidth;
+
+// var height = window.innerHeight;
+
+// if(width < 750 && height < 1100) {
+//     $console.keypressed(function(e) {
+//         if(e == 13) {
+//             $(this).blur();
+//         }
+//     }
+// }
