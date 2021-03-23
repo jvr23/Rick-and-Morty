@@ -95,7 +95,6 @@ function createLoader(){
   const loadMore = (entries) => {
     console.log(entries);
     if(entries[0].isIntersecting){
-      // state.searching = false;
       apiCall(state);
     }
   }
@@ -245,23 +244,7 @@ document.querySelector('.closeInput').addEventListener('click', (e)=>{
     return;
   }else{
     clearSeach();
-    // document.querySelector('.searchText').classList.add('hiding');
-    // e.currentTarget.classList.add('hiding');
-    // document.querySelector('.searchLabel').classList.remove('hiding');
     document .querySelector('.searchText').value = '';
   }
   console.log(e.currentTarget);
 });
-
-
-// var width = window.innerWidth;
-
-// var height = window.innerHeight;
-
-// if(width < 750 && height < 1100) {
-//     $console.keypressed(function(e) {
-//         if(e == 13) {
-//             $(this).blur();
-//         }
-//     }
-// }
